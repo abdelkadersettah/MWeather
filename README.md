@@ -15,4 +15,3 @@ The App saved the last chosen country by using the LocalStorage API.
 ## Copyright
 
 Copyright (c) 2022 by [abdelkader settah](https://github.com/abdelkadersettah)
-Email settahkader@gmail.com
