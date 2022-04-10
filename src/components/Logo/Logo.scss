@@ -1,14 +1,23 @@
+@import "../../styles/index.scss";
 .logo {
   display: flex;
   align-items: center;
   text-decoration: none;
   padding: 1rem 2rem;
+  max-width: $page-width;
+  margin: 0 auto;
+  @media (max-width: 25rem) {
+    padding: 1rem 1rem;
+  }
   &__img {
-    width: 32px;
-    margin-right: 0.5rem;
+    width: 48px;
+    height: 48px;
+    margin-right: rem;
   }
   &__name {
-    font-size: 1.2rem;
-    font-weight: 600;
+    font-weight: 700;
+    color: $orange;
+    font-size: 2.2rem;
+    text-shadow: 1px 1px 2px white;
   }
 }

@@ -1,0 +1,63 @@
+@import "../../styles/index.scss";
+.weather {
+  max-width: $page-width;
+  margin: 0 auto;
+  padding: 1rem 2rem;
+  color: $white;
+  text-align: center;
+  text-shadow: 3px 3px 3px #000;
+  @media (max-width: 25rem) {
+    padding: 1rem 1rem;
+  }
+  &__country {
+    color: $white;
+    font-size: 4rem;
+    font-weight: 500;
+  }
+  &__container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  &__img {
+    width: 100px;
+    height: auto;
+  }
+  &__Temperature {
+    font-size: 3rem;
+    font-weight: 600;
+    &--unit {
+      transform: translate(-10px, 0);
+      display: inline-block;
+      font-weight: 400;
+    }
+    &--sign {
+      transform: translate(-12px, -20px);
+      display: inline-block;
+      font-size: 2rem;
+    }
+  }
+  &__detail {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 0.625rem;
+    flex-wrap: wrap;
+  }
+  &__item {
+    margin: 0.3rem 0.8rem;
+    display: flex;
+    align-items: center;
+    & > * {
+      padding: 0.3rem;
+      font-size: 1.3rem;
+      font-weight: 600;
+    }
+  }
+  &__icon {
+    width: 18px;
+  }
+  &__number {
+    padding-left: 0.1rem;
+  }
+}

@@ -2,25 +2,16 @@ import React, { useContext, useEffect, useState } from "react";
 import Select from "react-select";
 import "./Countries.scss";
 import CountriesDataService from "../../services/countries.service";
-import CountriesState from "../../types/states.type";
 import { MweatherContext } from "../../Context/MWeatherContext";
 import { Country, CountryContextType } from "../../types/context.type";
 import { SelectOption } from "../../types/countries.type";
-import { stringify } from "querystring";
-
-const options = [
-  { value: "chocolate", label: "Chocolate" },
-  { value: "strawberry", label: "Strawberry" },
-  { value: "vanilla", label: "Vanilla" },
-];
 
 const Countries: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([
     { name: "", code: "", capital: "" },
   ]);
-  const { country, updateCountry } = useContext(
-    MweatherContext
-  ) as CountryContextType;
+  const { updateCountry } = useContext(MweatherContext) as CountryContextType;
+
   useEffect(() => {
     CountriesDataService.getAll().then((response: any) => {
       let result = response.data
@@ -35,6 +26,7 @@ const Countries: React.FC = () => {
       setCountries([...result]);
     });
   }, []);
+
   const HandleChange = (option: SelectOption) => {
     if (option) {
       let selectedCountry = {
@@ -46,14 +38,10 @@ const Countries: React.FC = () => {
       window.localStorage.setItem("country", JSON.stringify(selectedCountry));
     }
   };
-  const handleSubmit: React.FormEventHandler<HTMLFormElement> | undefined = (
-    e
-  ) => {
-    e.preventDefault();
-  };
+
   return (
     <section className="countries">
-      <form action="" className="countries__form" onSubmit={handleSubmit}>
+      <form className="countries__form" onSubmit={(e) => e.preventDefault()}>
         <Select
           isClearable
           options={countries.map((country) => ({

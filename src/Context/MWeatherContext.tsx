@@ -11,7 +11,6 @@ const MweatherContextProvider: React.FC<React.ReactNode> = ({ children }) => {
   });
   const updateCountry = (country: Country) => {
     setCountry({ ...country });
-    console.log(country);
   };
   return (
     <MweatherContext.Provider value={{ country, updateCountry }}>

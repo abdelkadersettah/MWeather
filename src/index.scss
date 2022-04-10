@@ -1,4 +1,12 @@
 @import "./styles/index.scss";
 body {
   font-family: $default-font;
+  min-height: 100vh;
+  height: 100%;
+  background-image: url("./assets/images/ui/blue-bg.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-color: $blend-bg;
+  background-blend-mode: darken;
 }
+// @import "../../styles/variables";
