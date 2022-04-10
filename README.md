@@ -4,7 +4,6 @@ MWeather is a PWA can help you to check the weather by country, The App display:
 - Wind (Speed and direction
 - Humidity
 - Pressure
-  income/expense web app.
 
 ## Overview
 
