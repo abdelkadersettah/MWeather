@@ -12,7 +12,8 @@ The data was retrieved via the following REST API. (https://openweathermap.org/a
 The list of the countries to be retrieved from the following rest api (https://restcountries.com/v3.1/all).
 The MWeather can save the last selected country by using the LocalStorage API.
 As mentioned before MWeather it is PWA, The user can install it and add it to ta device home screen.
-This is the link of [MWeather](https://mweather-pwa.netlify.app/)
+
+- This is the link of [MWeather](https://mweather-pwa.netlify.app/)
 
 ## Copyright
 
