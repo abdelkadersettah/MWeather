@@ -2,7 +2,7 @@ import React from "react";
 import LogoImg from "../../assets/images/logo/logo.png";
 import "./Logo.scss";
 
-const Logo: React.FunctionComponent = () => {
+export const Logo: React.FC = () => {
   return (
     <a href="/" className="logo">
       <img className="logo__img" src={LogoImg} alt="Mweather logo" />
@@ -10,4 +10,3 @@ const Logo: React.FunctionComponent = () => {
     </a>
   );
 };
-export default Logo;

@@ -10,3 +10,6 @@ body {
   background-blend-mode: darken;
 }
 // @import "../../styles/variables";
+.react-select__control {
+  padding: 2rem !important;
+}

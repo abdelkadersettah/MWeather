@@ -6,7 +6,7 @@ import { CountryContextType } from "../../types/context.type";
 import { WeatherState } from "../../types/weather.type";
 import MyWeatherContent from "./MyWeatherContent";
 
-const MyWeather: React.FC = () => {
+export const MyWeather: React.FC = () => {
   const { country } = useContext(MweatherContext) as CountryContextType;
   const [weather, setWeather] = useState<WeatherState>({
     country: "",
@@ -71,5 +71,3 @@ const MyWeather: React.FC = () => {
     </section>
   );
 };
-
-export default MyWeather;

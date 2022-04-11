@@ -6,7 +6,7 @@ import { MweatherContext } from "../../Context/MWeatherContext";
 import { Country, CountryContextType } from "../../types/context.type";
 import { SelectOption } from "../../types/countries.type";
 
-const Countries: React.FC = () => {
+export const Countries: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([
     { name: "", code: "", capital: "" },
   ]);
@@ -44,6 +44,7 @@ const Countries: React.FC = () => {
       <form className="countries__form" onSubmit={(e) => e.preventDefault()}>
         <Select
           isClearable
+          className={"countries__select"}
           options={countries.map((country) => ({
             label: country.name,
             value: country.code,
@@ -55,4 +56,3 @@ const Countries: React.FC = () => {
     </section>
   );
 };
-export default Countries;

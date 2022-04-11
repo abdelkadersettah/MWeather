@@ -1,10 +1,10 @@
 import React from "react";
-import { WeatherState } from "../../types/weather.type";
-import WindDirectionImg from "../../assets/images/ui/wind.png";
+import { WeatherState } from "../../../types/weather.type";
+import WindDirectionImg from "../../../assets/images/ui/wind.png";
 
-type Props = {};
-
-const MyWeatherContent: React.FC<{ weather: WeatherState }> = ({ weather }) => {
+export const MyWeatherContent: React.FC<{ weather: WeatherState }> = ({
+  weather,
+}) => {
   return (
     <>
       {" "}
@@ -72,4 +72,3 @@ const MyWeatherContent: React.FC<{ weather: WeatherState }> = ({ weather }) => {
     </>
   );
 };
-export default MyWeatherContent;

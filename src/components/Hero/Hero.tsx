@@ -1,12 +1,10 @@
 import React from "react";
 import "./Hero.scss";
-import Logo from "../Logo/Logo";
-import Countries from "../Countries/Countries";
-import MyWeather from "../MyWeather/MyWeather";
+import Logo from "../Logo";
+import Countries from "../Countries";
+import MyWeather from "../MyWeather";
 
-type Props = {};
-
-const Hero: React.FC = (props: Props) => {
+export const Hero: React.FC = () => {
   return (
     <div className="hero">
       <Logo />
@@ -15,5 +13,3 @@ const Hero: React.FC = (props: Props) => {
     </div>
   );
 };
-
-export default Hero;
