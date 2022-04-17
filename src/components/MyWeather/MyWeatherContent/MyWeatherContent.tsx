@@ -15,7 +15,7 @@ export const MyWeatherContent: React.FC<{ weather: WeatherState }> = ({
         {weather?.icon && (
           <img
             className="weather__img"
-            src={`http://openweathermap.org/img/wn/${weather?.icon}.png`}
+            src={`https://openweathermap.org/img/wn/${weather?.icon}.png`}
             alt="weather description"
           />
         )}
