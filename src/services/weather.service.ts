@@ -1,12 +1,8 @@
-import http from "../http-commons/http-weather";
+import http, { openWeatherMapKey } from "../http-commons/http-weather";
 import WeatherData from "../types/countries.type";
 
 class WeatherDataService {
-  get(
-    capital: string,
-    code: string,
-    apiKey: string = "ab2b3491650934d2f148f7ea7af2869a"
-  ) {
+  get(capital: string, code: string, apiKey: string = openWeatherMapKey) {
     return http.get<WeatherData>(
       `/weather?q=${capital},${code}&appid=${apiKey}&units=metric`
     );
