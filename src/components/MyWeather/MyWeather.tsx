@@ -27,7 +27,6 @@ export const MyWeather: React.FC = () => {
       WeatherDataService.get(capital.toLowerCase(), code.toLowerCase())
         .then((result: any) => result.data)
         .then((result: any) => {
-          debugger;
           setWeather({
             country: name,
             capital: capital,
