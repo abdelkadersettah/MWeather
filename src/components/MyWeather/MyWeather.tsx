@@ -1,16 +1,16 @@
-import React, { useContext, useEffect, useState } from "react";
-import "./MyWeather.scss";
-import WeatherDataService from "../../services/weather.service";
-import { MweatherContext } from "../../Context/MWeatherContext";
-import { CountryContextType } from "../../types/context.type";
-import { WeatherState } from "../../types/weather.type";
-import MyWeatherContent from "./MyWeatherContent";
+import React, { useContext, useEffect, useState } from 'react';
+import { MweatherContext } from '../../Context/MWeatherContext';
+import WeatherDataService from '../../services/weather.service';
+import { CountryContextType } from '../../types/context.type';
+import { WeatherState } from '../../types/weather.type';
+import './MyWeather.scss';
+import MyWeatherContent from './MyWeatherContent';
 
 export const MyWeather: React.FC = () => {
   const { country } = useContext(MweatherContext) as CountryContextType;
   const [weather, setWeather] = useState<WeatherState>({
-    country: "",
-    capital: "",
+    country: '',
+    capital: '',
     temperature: null,
     temperatureMin: null,
     temperatureMax: null,
@@ -18,15 +18,16 @@ export const MyWeather: React.FC = () => {
     windDirection: null,
     humidity: null,
     pressure: null,
-    icon: "",
+    icon: '',
   });
   useEffect(() => {
-    let country: string | null = window.localStorage.getItem("country");
+    let country: string | null = window.localStorage.getItem('country');
     if (country) {
       const { name, code, capital } = JSON.parse(country);
       WeatherDataService.get(capital.toLowerCase(), code.toLowerCase())
         .then((result: any) => result.data)
         .then((result: any) => {
+          debugger;
           setWeather({
             country: name,
             capital: capital,

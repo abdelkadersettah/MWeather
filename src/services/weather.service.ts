@@ -1,10 +1,11 @@
-import http, { openWeatherMapKey } from "../http-commons/http-weather";
-import WeatherData from "../types/countries.type";
+import http from '../http-commons/http-weather';
+import WeatherData from '../types/countries.type';
 
 class WeatherDataService {
-  get(capital: string, code: string, apiKey: string = openWeatherMapKey) {
+  private openWeatherMapKey = process.env.REACT_APP_OPEN_WEATHER_MAP_KEY;
+  get(capital: string, code: string) {
     return http.get<WeatherData>(
-      `/weather?q=${capital},${code}&appid=${apiKey}&units=metric`
+      `/weather?q=${capital},${code}&appid=${this.openWeatherMapKey}&units=metric`
     );
   }
 }
