@@ -89,7 +89,7 @@ const CustomSelect = ({
             id={inputId}
             data-testid="selectInput"
             onFocus={handleOpenOptionList}
-            placeholder={placeholder}
+            placeholder={placeholder ?? 'Select...'}
           />
         </div>
         <div

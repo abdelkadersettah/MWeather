@@ -13,6 +13,7 @@ The `CustomSelect` help yoo to develop select component with search option to se
 | id          | string             | specify the id of select form                |
 | inputId     | string             | specify the id of the input element          |
 | onItemClick | (OptionType)=>void | Handle change events on the select           |
+| placeholder | string             | specify the input placeholder                |
 
 ## How to use
 
