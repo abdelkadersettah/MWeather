@@ -8,6 +8,7 @@ type Props = {
   id?: string;
   inputId?: string;
   onItemClick?: (item: Option) => void;
+  placeholder?: string;
 };
 
 const CustomSelect = ({
@@ -15,6 +16,7 @@ const CustomSelect = ({
   inputName,
   id,
   inputId,
+  placeholder,
   onItemClick,
 }: Props) => {
   const [inputValue, setInputValue] = useState('');
@@ -87,6 +89,7 @@ const CustomSelect = ({
             id={inputId}
             data-testid="selectInput"
             onFocus={handleOpenOptionList}
+            placeholder={placeholder}
           />
         </div>
         <div

@@ -49,6 +49,7 @@ export const Countries: React.FC = () => {
             capital: country.capital,
           }))}
           onItemClick={(item) => HandleChange(item)}
+          placeholder="Select a country"
         />
       </form>
     </section>
