@@ -5,5 +5,5 @@ export default interface CountriesData {
 export interface SelectOption {
   label: string;
   value: string;
-  capital: string;
+  [key: string]: string;
 }

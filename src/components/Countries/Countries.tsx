@@ -1,14 +1,14 @@
-import React, { useContext, useEffect, useState } from "react";
-import Select from "react-select";
-import "./Countries.scss";
-import CountriesDataService from "../../services/countries.service";
-import { MweatherContext } from "../../Context/MWeatherContext";
-import { Country, CountryContextType } from "../../types/context.type";
-import { SelectOption } from "../../types/countries.type";
+import React, { useContext, useEffect, useState } from 'react';
+import { MweatherContext } from '../../Context/MWeatherContext';
+import CountriesDataService from '../../services/countries.service';
+import { Country, CountryContextType } from '../../types/context.type';
+import { SelectOption } from '../../types/countries.type';
+import CustomSelect from '../CustomSelect/CustomSelect';
+import './Countries.scss';
 
 export const Countries: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([
-    { name: "", code: "", capital: "" },
+    { name: '', code: '', capital: '' },
   ]);
   const { updateCountry } = useContext(MweatherContext) as CountryContextType;
 
@@ -18,7 +18,7 @@ export const Countries: React.FC = () => {
         .map((country: any) => ({
           name: country.name.common,
           code: country.cca2,
-          capital: country.capital ? country.capital[0] : "",
+          capital: country.capital ? country.capital[0] : '',
         }))
         .sort((a: Country, b: Country) => {
           return a.name.localeCompare(b.name);
@@ -35,22 +35,20 @@ export const Countries: React.FC = () => {
         capital: option.capital,
       };
       updateCountry(selectedCountry);
-      window.localStorage.setItem("country", JSON.stringify(selectedCountry));
+      window.localStorage.setItem('country', JSON.stringify(selectedCountry));
     }
   };
 
   return (
-    <section className="countries">
+    <section className="countries" data-testid="Countries">
       <form className="countries__form" onSubmit={(e) => e.preventDefault()}>
-        <Select
-          isClearable
-          className={"countries__select"}
+        <CustomSelect
           options={countries.map((country) => ({
             label: country.name,
             value: country.code,
             capital: country.capital,
           }))}
-          onChange={(option) => HandleChange(option as SelectOption)}
+          onItemClick={(item) => HandleChange(item)}
         />
       </form>
     </section>

@@ -1,0 +1,67 @@
+.custom-select {
+  position: relative;
+  &__input-container {
+    display: grid;
+    grid-template-columns: 1fr auto;
+    background: #fff;
+    padding: 2px 8px;
+    min-height: 38px;
+    align-items: center;
+    border-radius: 4px;
+  }
+  &__input {
+    display: grid;
+
+    & input {
+      height: 38px;
+      padding-left: 4px;
+      font-size: 1rem;
+      border: none;
+      &:focus,
+      &:active,
+      &:hover {
+        border: none;
+        outline: none;
+      }
+    }
+  }
+  &__indicator {
+    height: 38px;
+    display: flex;
+    align-items: center;
+    padding: 8px;
+    box-sizing: border-box;
+    cursor: pointer;
+    & > * {
+      fill: #cccccc;
+      color: #cccccc;
+      transition: all 0.2s linear;
+    }
+    &:hover > * {
+      fill: hsl(0, 0%, 60%);
+      color: hsl(0, 0%, 60%);
+    }
+  }
+  &__option-list {
+    background-color: #fff;
+    max-height: 400px;
+    height: auto;
+    min-height: 50px;
+    overflow: hidden;
+    overflow-y: scroll;
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    right: 0;
+    transform: translateY(100%);
+    z-index: 9999;
+  }
+  &__item {
+    padding: 4px 12px;
+    cursor: pointer;
+    &--selected {
+      background-color: rgb(14, 153, 247);
+      color: #fff;
+    }
+  }
+}
