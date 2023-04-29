@@ -1,5 +1,6 @@
-import Countries from "./Countries";
-import Hero from "./Hero";
-import MyWeather from "./MyWeather";
+import { SearchButton } from './Buttons';
+import Countries from './Countries';
+import Header from './Header';
+import MyWeather from './MyWeather';
 
-export { Countries, Hero, MyWeather };
+export { Countries, MyWeather, Header, SearchButton };

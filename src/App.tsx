@@ -1,12 +1,12 @@
-import "./App.scss";
-import { Hero } from "./components";
-import MweatherContextProvider from "./Context/MWeatherContext";
+import './App.scss';
+import MweatherContextProvider from './Context/MWeatherContext';
+import { Home } from './pages';
 
 function App() {
   return (
     <div className="App">
       <MweatherContextProvider>
-        <Hero />
+        <Home />
       </MweatherContextProvider>
     </div>
   );

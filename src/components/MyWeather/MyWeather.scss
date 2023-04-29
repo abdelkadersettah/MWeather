@@ -1,16 +1,15 @@
-@import "../../styles/index.scss";
 .weather {
-  max-width: $page-width;
+  max-width: var(--page-width);
   margin: 0 auto;
   padding: 1rem 2rem;
-  color: $white;
+  color: var(--white);
   text-align: center;
   text-shadow: 3px 3px 3px #000;
   @media (max-width: 25rem) {
     padding: 1rem 1rem;
   }
   &__country {
-    color: $white;
+    color: var(--white);
     font-size: 4rem;
     font-weight: 500;
   }

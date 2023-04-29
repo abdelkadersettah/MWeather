@@ -6,12 +6,12 @@ export default interface WeatherData {
 export interface WeatherState {
   country: string;
   capital: string;
-  temperature: number | null;
-  temperatureMin: number | null;
-  temperatureMax: number | null;
-  windSpeed: number | null;
-  windDirection: number | null;
-  humidity: number | null;
-  pressure: number | null;
+  temperature: number | undefined;
+  temperatureMin: number | undefined;
+  temperatureMax: number | undefined;
+  windSpeed: number | undefined;
+  windDirection: number | undefined;
+  humidity: number | undefined;
+  pressure: number | undefined;
   icon: string;
 }

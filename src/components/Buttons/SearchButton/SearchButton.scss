@@ -1,0 +1,14 @@
+.search-button {
+  box-sizing: border-box;
+  padding: 0.5rem 0.8rem;
+  background-color: var(--primary-color);
+  transition: var(--transition--all);
+  color: var(--white);
+  min-height: var(--search-height);
+  height: 100%;
+  border-radius: 0 var(--default-radius) var(--default-radius) 0;
+  &:hover,
+  &:active {
+    background-color: var(--hover-color);
+  }
+}

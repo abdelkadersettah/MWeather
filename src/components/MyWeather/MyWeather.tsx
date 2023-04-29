@@ -1,69 +1,61 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MweatherContext } from '../../Context/MWeatherContext';
-import WeatherDataService from '../../services/weather.service';
-import { CountryContextType } from '../../types/context.type';
-import { WeatherState } from '../../types/weather.type';
+import { citiesContextType } from '../../types/context.type';
 import './MyWeather.scss';
 import MyWeatherContent from './MyWeatherContent';
 
 export const MyWeather: React.FC = () => {
-  const { country } = useContext(MweatherContext) as CountryContextType;
-  const [weather, setWeather] = useState<WeatherState>({
-    country: '',
-    capital: '',
-    temperature: null,
-    temperatureMin: null,
-    temperatureMax: null,
-    windSpeed: null,
-    windDirection: null,
-    humidity: null,
-    pressure: null,
+  const { cities, selectedCity } = useContext(
+    MweatherContext
+  ) as citiesContextType;
+  const [weather, setWeather] = useState<any>({
+    temperature: undefined,
+    temperatureMin: undefined,
+    temperatureMax: undefined,
+    windSpeed: undefined,
+    windDirection: undefined,
+    humidity: undefined,
+    pressure: undefined,
     icon: '',
   });
   useEffect(() => {
-    let country: string | null = window.localStorage.getItem('country');
-    if (country) {
-      const { name, code, capital } = JSON.parse(country);
-      WeatherDataService.get(capital.toLowerCase(), code.toLowerCase())
-        .then((result: any) => result.data)
-        .then((result: any) => {
-          setWeather({
-            country: name,
-            capital: capital,
-            temperature: Math.round(result.main.temp),
-            temperatureMin: Math.round(result.main.temp_max),
-            temperatureMax: Math.round(result.main.temp_min),
-            windSpeed: Math.round(result.wind.speed),
-            windDirection: result.wind.deg,
-            humidity: result.main.humidity,
-            pressure: result.main.pressure,
-            icon: result.weather[0].icon,
-          });
-        });
-    }
+    // let country: string | null = window.localStorage.getItem('country');
+    // if (country) {
+    //   const { name, code, capital } = JSON.parse(country);
+    //   WeatherDataService.get(capital.toLowerCase(), code.toLowerCase())
+    //     .then((result: any) => result.data)
+    //     .then((result: any) => {
+    //       setWeather({
+    //         country: name,
+    //         capital: capital,
+    //         temperature: Math.round(selectedCity?.main?.temp ?? 0),
+    //         temperatureMin: Math.round(selectedCity?.main?.temp_max ?? 0),
+    //         temperatureMax: Math.round(selectedCity?.main?.temp_min ?? 0),
+    //         windSpeed: Math.round(selectedCity?.wind?.speed ?? 0),
+    //         windDirection: selectedCity?.wind?.deg,
+    //         humidity: selectedCity?.main?.humidity,
+    //         pressure: selectedCity?.main?.pressure,
+    //         icon: selectedCity?.weather ? selectedCity?.weather[0].icon : '',
+    //       });
+    //     });
+    // }
   }, []);
 
   useEffect(() => {
-    const { name, code, capital } = country;
-    if (code && capital) {
-      WeatherDataService.get(capital.toLowerCase(), code.toLowerCase())
-        .then((result: any) => result.data)
-        .then((result: any) => {
-          setWeather({
-            country: country.name,
-            capital: country.capital,
-            temperature: Math.round(result.main.temp),
-            temperatureMin: Math.round(result.main.temp_max),
-            temperatureMax: Math.round(result.main.temp_min),
-            windSpeed: Math.round(result.wind.speed),
-            windDirection: result.wind.deg,
-            humidity: result.main.humidity,
-            pressure: result.main.pressure,
-            icon: result.weather[0].icon,
-          });
-        });
+    if (selectedCity) {
+      setWeather({
+        temperature: Math.round(selectedCity?.main?.temp ?? 0),
+        temperatureMin: Math.round(selectedCity?.main?.temp_max ?? 0),
+        temperatureMax: Math.round(selectedCity?.main?.temp_min ?? 0),
+        windSpeed: Math.round(selectedCity?.wind?.speed ?? 0),
+        windDirection: selectedCity?.wind?.deg,
+        humidity: selectedCity?.main?.humidity,
+        pressure: selectedCity?.main?.pressure,
+        icon: selectedCity?.weather ? selectedCity?.weather[0].icon : '',
+      });
+    } else {
     }
-  }, [country]);
+  }, [selectedCity]);
 
   return (
     <section className="weather">

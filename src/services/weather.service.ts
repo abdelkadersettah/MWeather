@@ -8,6 +8,11 @@ class WeatherDataService {
       `/weather?q=${capital},${code}&appid=${this.openWeatherMapKey}&units=metric`
     );
   }
+  getByCity(city: string) {
+    return http.get<any>(
+      `/find?q=${city}&appid=${this.openWeatherMapKey}&units=metric`
+    );
+  }
 }
 
 export default new WeatherDataService();

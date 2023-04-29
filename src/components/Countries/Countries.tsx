@@ -1,16 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { MweatherContext } from '../../Context/MWeatherContext';
 import CountriesDataService from '../../services/countries.service';
-import { Country, CountryContextType } from '../../types/context.type';
-import { SelectOption } from '../../types/countries.type';
-import CustomSelect from '../CustomSelect/CustomSelect';
+import { CityDto, Country, citiesContextType } from '../../types/context.type';
+
+import WeatherDataService from '../../services/weather.service';
+
+import { SearchField } from '../SearchField/SearchField';
 import './Countries.scss';
 
 export const Countries: React.FC = () => {
   const [countries, setCountries] = useState<Country[]>([
     { name: '', code: '', capital: '' },
   ]);
-  const { updateCountry } = useContext(MweatherContext) as CountryContextType;
+  const { updateCities, cities, selectedCity, updateSelectedCity } = useContext(
+    MweatherContext
+  ) as citiesContextType;
 
   useEffect(() => {
     CountriesDataService.getAll().then((response: any) => {
@@ -27,29 +31,26 @@ export const Countries: React.FC = () => {
     });
   }, []);
 
-  const HandleChange = (option: SelectOption) => {
-    if (option) {
-      let selectedCountry = {
-        name: option.label,
-        code: option.value,
-        capital: option.capital,
-      };
-      updateCountry(selectedCountry);
-      window.localStorage.setItem('country', JSON.stringify(selectedCountry));
-    }
+  const HandleChange = (city: CityDto) => {
+    updateSelectedCity(city);
+    // updateCountry(selectedCountry);
+    window.localStorage.setItem('country', JSON.stringify(city));
+  };
+  const handleSearchedCity = (searchKey: string) => {
+    WeatherDataService.getByCity(searchKey).then((res) => {
+      const cities: CityDto[] = res.data?.list;
+      updateCities(cities);
+      debugger;
+    });
   };
 
   return (
     <section className="countries" data-testid="Countries">
       <form className="countries__form" onSubmit={(e) => e.preventDefault()}>
-        <CustomSelect
-          options={countries.map((country) => ({
-            label: country.name,
-            value: country.code,
-            capital: country.capital,
-          }))}
-          onItemClick={(item) => HandleChange(item)}
-          placeholder="Select a country"
+        <SearchField
+          onSearch={(key) => handleSearchedCity(key)}
+          searchResult={cities}
+          onSelectItem={HandleChange}
         />
       </form>
     </section>
