@@ -9,7 +9,7 @@ const WindIcon = ({ style, className }: Props) => {
       <svg
         data-v-47880d39=""
         viewBox="0 0 1000 1000"
-        enable-background="new 0 0 1000 1000"
+        enableBackground="new 0 0 1000 1000"
         xmlSpace="preserve"
         className={className}
         style={style}

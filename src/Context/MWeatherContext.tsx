@@ -19,7 +19,7 @@ const MweatherContextProvider: React.FC<React.ReactNode> = ({ children }) => {
   };
   useEffect(() => {
     const cityLS = localStorage.getItem('city');
-    const city = JSON.parse(cityLS ?? '');
+    const city = cityLS ? JSON.parse(cityLS) : null;
     if (city) {
       const lan = city?.coord?.lat;
       const lon = city?.coord?.lon;
