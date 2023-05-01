@@ -19,6 +19,11 @@ class WeatherDataService {
       `weather?lat=${lat}&lon=${lon}&appid=${this.openWeatherMapKey}&units=${unit}`
     );
   }
+  getFiveDayWeather(lat: number, lon: number, unit: UnitsDto) {
+    return http.get<any>(
+      `forecast?lat=${lat}&lon=${lon}&appid=${this.openWeatherMapKey}&units=${unit}`
+    );
+  }
 }
 
 export default new WeatherDataService();

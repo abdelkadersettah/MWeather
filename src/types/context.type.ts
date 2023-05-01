@@ -11,6 +11,8 @@ export interface citiesContextType {
   updateSelectedCity: (selectedCity: CityDto) => void;
   units: UnitsDto;
   updateUnits: (selectedUnit: UnitsDto) => void;
+  updateFiveDayWeather: (fiveDayWeather: FiveDayWeatherDto[]) => void;
+  fiveDayWeather: FiveDayWeatherDto[] | null;
 }
 interface CordDto {
   lat: number;
@@ -52,4 +54,19 @@ export interface CityDto {
   wind?: WindDto;
   sys: sysDto;
   weather: WeatherDto[] | null;
+}
+export interface FiveDayWeatherDto {
+  dt: number;
+  main: CityMainTempDto;
+  weather: WeatherDto[];
+  clouds: {
+    all: 96;
+  };
+  wind: WindDto;
+  visibility: number;
+  pop: number;
+  sys: {
+    pod: string;
+  };
+  dt_txt: string;
 }

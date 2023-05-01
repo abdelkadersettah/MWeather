@@ -1,0 +1,56 @@
+.today-weather {
+  background-color: #fff;
+  padding: 1rem;
+  color: #000;
+  max-width: 850px;
+  margin: 0 auto;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.24);
+  &__country {
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  &__feels {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  &__Temperature {
+    font-size: 1.8rem;
+    font-weight: 500;
+    &--unit {
+      display: inline-block;
+      font-size: 1.8rem;
+    }
+    &--sign {
+      display: inline-block;
+    }
+  }
+  &__container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+  }
+
+  &__detail {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1rem;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1ch;
+      position: relative;
+      padding: 0.5rem;
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+      }
+    }
+  }
+}

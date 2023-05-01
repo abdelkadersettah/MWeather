@@ -3,6 +3,7 @@ import { MweatherContext } from '../../Context/MWeatherContext';
 import { useOnClickOutside } from '../../hooks/useClickOutside';
 import { CityDto, citiesContextType } from '../../types/context.type';
 import { SearchButton } from '../Buttons';
+import WeatherIcon from '../WeatherIcon/WeatherIcon';
 import './SearchField.scss';
 import { Option } from './types';
 type Props = {
@@ -23,14 +24,7 @@ const CountryFlag = (countryCode: string) => {
     />
   );
 };
-const WeatherIcon = (iconCode: string) => {
-  return (
-    <img
-      src={`https://openweathermap.org/img/wn/${iconCode.toLowerCase()}.png`}
-      alt={`${iconCode} flag`}
-    />
-  );
-};
+
 export const SearchField = ({
   inputName,
   id,
@@ -101,7 +95,11 @@ export const SearchField = ({
                     {units === 'metric' ? '°c' : '°f'}
                   </span>
                 )}
-                {r.weather && <span>{WeatherIcon(r.weather[0].icon)}</span>}
+                {r.weather && (
+                  <span>
+                    <WeatherIcon iconCode={r.weather[0].icon} />
+                  </span>
+                )}
               </li>
             );
           })}

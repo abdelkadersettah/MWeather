@@ -1,28 +1,46 @@
 import { useContext } from 'react';
 import { MweatherContext } from '../../../Context/MWeatherContext';
-import HumidityIcon from '../../../assets/images/ui/humidity.svg';
-import SunriseIcon from '../../../assets/images/ui/sunrise.svg';
-import SunsetIcon from '../../../assets/images/ui/sunset.svg';
 import { citiesContextType } from '../../../types/context.type';
-import { getTimeFromTimestamp } from '../../../utils/getTimeFromTimestamp';
-import WindIcon from '../../WindIcon/WindIcon';
+import WeatherIcon from '../../WeatherIcon/WeatherIcon';
+import './FiveDayWeather.scss';
 
-export const MyWeatherContent = ({}) => {
-  const { cities, selectedCity, units } = useContext(
+export const FiveDayWeather = ({}) => {
+  const { cities, selectedCity, units, fiveDayWeather } = useContext(
     MweatherContext
   ) as citiesContextType;
 
   return (
     <>
       {selectedCity && (
-        <section className="today-weather">
+        <section className="six-day-weather">
           {' '}
           {selectedCity?.name && (
-            <h1 className="today-weather__country">
-              {selectedCity.name}, {selectedCity.sys.country}{' '}
+            <h1 className="six-day-weather__title">
+              6 Day Weather {selectedCity.name}, {selectedCity.sys.country}{' '}
             </h1>
           )}
-          {selectedCity?.weather && (
+          <ul className="six-day-weather__option-list">
+            {fiveDayWeather?.map((w) => {
+              return (
+                <li key={w.dt}>
+                  <span>{w.dt_txt}</span>
+                  {w.main?.temp && (
+                    <span>
+                      {Math.round(w.main?.temp)}
+                      {units === 'metric' ? '°c' : '°f'}
+                    </span>
+                  )}
+                  {w.weather && (
+                    <span>
+                      <WeatherIcon iconCode={w.weather[0].icon} />
+                    </span>
+                  )}
+                  <span>{w.weather[0].description}</span>
+                </li>
+              );
+            })}
+          </ul>
+          {/* {selectedCity?.weather && (
             <div>
               <h2 className="today-weather__feels">
                 Feels like {Math.round(selectedCity?.main?.temp ?? 0)}{' '}
@@ -96,7 +114,7 @@ export const MyWeatherContent = ({}) => {
                   : ''}
               </span>
             </li>
-          </ul>
+          </ul> */}
         </section>
       )}
     </>

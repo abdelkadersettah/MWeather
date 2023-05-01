@@ -1,0 +1,39 @@
+.six-day-weather {
+  background-color: #fff;
+  padding: 1rem;
+  color: #000;
+  max-width: 850px;
+  margin: 2rem auto;
+  border-radius: 5px;
+  box-shadow: 0 0 4px 0px rgba(0, 0, 0, 0.24);
+  &__title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin-bottom: 1rem;
+  }
+  &__weather {
+    font-size: 1rem;
+    font-weight: 500;
+  }
+  &__option-list {
+    li {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr 1fr;
+      align-items: center;
+      gap: 5px;
+      justify-content: space-between;
+      position: relative;
+      padding: 0rem;
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+      }
+    }
+  }
+}

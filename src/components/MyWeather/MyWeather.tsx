@@ -1,8 +1,9 @@
 import React, { useContext } from 'react';
 import { MweatherContext } from '../../Context/MWeatherContext';
 import { citiesContextType } from '../../types/context.type';
+import { FiveDayWeather } from './FiveDayWeather/FiveDayWeather';
 import './MyWeather.scss';
-import MyWeatherContent from './MyWeatherContent';
+import { TodayWeather } from './TodayWeather/TodayWeather';
 
 export const MyWeather: React.FC = () => {
   const { cities, selectedCity, units } = useContext(
@@ -11,7 +12,8 @@ export const MyWeather: React.FC = () => {
 
   return (
     <section className="weather">
-      <MyWeatherContent />
+      <TodayWeather />
+      <FiveDayWeather />
     </section>
   );
 };
