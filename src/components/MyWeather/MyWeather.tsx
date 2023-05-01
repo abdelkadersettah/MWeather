@@ -5,7 +5,7 @@ import './MyWeather.scss';
 import MyWeatherContent from './MyWeatherContent';
 
 export const MyWeather: React.FC = () => {
-  const { cities, selectedCity } = useContext(
+  const { cities, selectedCity, units } = useContext(
     MweatherContext
   ) as citiesContextType;
   const [weather, setWeather] = useState<any>({
@@ -56,10 +56,11 @@ export const MyWeather: React.FC = () => {
     } else {
     }
   }, [selectedCity]);
+  useEffect(() => {}, [units]);
 
   return (
     <section className="weather">
-      <MyWeatherContent weather={weather} />
+      <MyWeatherContent />
     </section>
   );
 };

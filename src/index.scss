@@ -7,6 +7,10 @@ body {
   // background-size: cover;
   // background-color: $blend-bg;
   // background-blend-mode: darken;
+  @media (max-width: 25rem) {
+    // font-size: 12px;
+  }
+  background-color: #55babe;
 }
 // @import "../../styles/variables";
 .react-select__control {
@@ -20,7 +24,10 @@ button {
   overflow: visible;
   cursor: pointer;
   background: transparent;
-
+  &:disabled {
+    pointer-events: none;
+    opacity: 0.5;
+  }
   /* inherit font & color from ancestor */
   color: inherit;
   font: inherit;

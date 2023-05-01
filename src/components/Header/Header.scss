@@ -1,7 +1,7 @@
 .header {
   background-color: var(--primary-bg);
-  &__nav {
-    display: flex;
-    align-items: center;
-  }
+  padding: var(--app-padding);
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }

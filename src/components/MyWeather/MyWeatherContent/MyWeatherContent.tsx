@@ -1,74 +1,99 @@
-import React from "react";
-import { WeatherState } from "../../../types/weather.type";
-import WindDirectionImg from "../../../assets/images/ui/wind.png";
+import { useContext } from 'react';
+import { MweatherContext } from '../../../Context/MWeatherContext';
+import HumidityIcon from '../../../assets/images/ui/humidity.svg';
+import SunriseIcon from '../../../assets/images/ui/sunrise.svg';
+import SunsetIcon from '../../../assets/images/ui/sunset.svg';
+import { citiesContextType } from '../../../types/context.type';
+import { getTimeFromTimestamp } from '../../../utils/getTimeFromTimestamp';
+import WindIcon from '../../WindIcon/WindIcon';
 
-export const MyWeatherContent: React.FC<{ weather: WeatherState }> = ({
-  weather,
-}) => {
+export const MyWeatherContent = ({}) => {
+  const { cities, selectedCity, units } = useContext(
+    MweatherContext
+  ) as citiesContextType;
+
   return (
-    <>
-      {" "}
-      {weather?.country && (
-        <h1 className="weather__country">{weather?.country}</h1>
+    <section className="today-weather">
+      {' '}
+      {selectedCity?.name && (
+        <h1 className="today-weather__country">
+          {selectedCity.name}, {selectedCity.sys.country}{' '}
+        </h1>
       )}
-      <article className="weather__container">
-        {weather?.icon && (
+      {selectedCity?.weather && (
+        <p>
+          <h2 className="today-weather__feels">
+            Feels like {Math.round(selectedCity?.main?.temp ?? 0)}{' '}
+            <span className="today-weather__feels--sign">°</span>
+            <span className="today-weather__feels--unit">
+              {units === 'metric' ? 'C' : 'F'}.
+            </span>{' '}
+            <span>{selectedCity?.weather[0].description}</span>
+          </h2>
+        </p>
+      )}
+      <div className="today-weather__container">
+        {selectedCity?.weather && (
           <img
-            className="weather__img"
-            src={`https://openweathermap.org/img/wn/${weather?.icon}.png`}
+            className="today-weather__img"
+            src={`https://openweathermap.org/img/wn/${selectedCity?.weather[0].icon}.png`}
             alt="weather description"
           />
         )}
-        {weather?.country && (
-          <h2 className="weather__Temperature">
-            {weather?.temperature}{" "}
-            <span className="weather__Temperature--sign">°</span>
-            <span className="weather__Temperature--unit">c</span>
+        {selectedCity?.main?.temp && (
+          <h2 className="today-weather__Temperature">
+            {Math.round(selectedCity?.main?.temp)}{' '}
+            <span className="today-weather__Temperature--sign">°</span>
+            <span className="today-weather__Temperature--unit">
+              {units === 'metric' ? 'C' : 'F'}
+            </span>
           </h2>
         )}
-      </article>
-      <ul className="weather__detail">
-        {weather?.temperatureMax && (
-          <li className="weather__item">
-            <span className="weather__title">Max Temperature</span>{" "}
-            <span className="weather__number">{weather?.temperatureMax}</span>{" "}
-          </li>
-        )}
-        {weather?.temperatureMin && (
-          <li className="weather__item">
-            <span className="weather__title"> Min Temperature</span>{" "}
-            <span className="weather__number"> {weather?.temperatureMin}</span>{" "}
-          </li>
-        )}
-        {weather?.windSpeed && (
-          <li className="weather__item">
-            <span className="weather__title">wind</span>{" "}
-            <img
-              style={{ transform: `rotate(${weather?.windDirection}deg)` }}
-              src={WindDirectionImg}
-              alt="wind direction"
-              className="weather__icon"
-            />{" "}
-            <span className="weather__number">{weather?.windSpeed} km/h</span>
-          </li>
-        )}
+      </div>
+      <ul className="today-weather__detail">
+        <li>
+          <span>
+            <img src={HumidityIcon} alt="hmidity" width={18} />
+          </span>
+          <span>Humidity:</span>
+          <span>{selectedCity?.main?.humidity}%</span>
+        </li>
+        <li>
+          <span>
+            <WindIcon
+              style={{
+                transform: `rotate(${selectedCity?.wind?.deg}deg)`,
+                width: '18px',
+              }}
+            />
+          </span>
+          <span>
+            {selectedCity?.wind?.speed} {units === 'metric' ? 'm/s N' : 'mph N'}
+          </span>
+        </li>
+        <li>
+          <span>
+            <img src={SunriseIcon} alt="icon sunrise" width={18} />
+          </span>
+          <span>Sunrise:</span>
+          <span>
+            {' '}
+            {selectedCity?.sys.sunrise
+              ? getTimeFromTimestamp(selectedCity?.sys.sunrise)
+              : ''}
+          </span>
+        </li>
+        <li>
+          <img src={SunsetIcon} alt="icon sunset" width={18} />
+
+          <span>Sunset:</span>
+          <span>
+            {selectedCity?.sys.sunset
+              ? getTimeFromTimestamp(selectedCity?.sys.sunset)
+              : ''}
+          </span>
+        </li>
       </ul>
-      <ul className="weather__detail">
-        {" "}
-        {weather?.humidity && (
-          <li className="weather__item">
-            <span className="weather__title">Humidity</span>
-            <span className="weather__number">{weather?.humidity}%</span>
-          </li>
-        )}
-        {weather?.pressure && (
-          <li className="weather__item">
-            {" "}
-            <span className="weather__title">Pressure</span>
-            <span className="weather__number">{weather?.pressure}</span>
-          </li>
-        )}
-      </ul>
-    </>
+    </section>
   );
 };

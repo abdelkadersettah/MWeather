@@ -1,4 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
+import { useOnClickOutside } from '../../hooks/useClickOutside';
 import ArrowIcon from './ArrowIcon';
 import './CustomSelect.scss';
 import { Option, Options } from './types';
@@ -23,6 +24,7 @@ const CustomSelect = ({
   const [selectedOption, setSelectedOption] = useState<Option>();
   const [openOptionList, setOpenOptionList] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setOpenOptionList(false));
 
   const [optionsState, setOptionsState] = useState<Options<Option>>([]);
   const handleSelectedItem = (item: Option) => {
@@ -54,25 +56,6 @@ const CustomSelect = ({
   useEffect(() => {
     setOptionsState(options);
   }, [options]);
-  useEffect(() => {
-    const checkIfClickedOutside = (e: MouseEvent) => {
-      if (
-        openOptionList &&
-        ref.current &&
-        !ref.current.contains(e.target as Node)
-      ) {
-        setOpenOptionList(false);
-      }
-      // @ts-ignore
-    };
-
-    document.addEventListener('mousedown', checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener('mousedown', checkIfClickedOutside);
-    };
-  }, [openOptionList]);
 
   return (
     <div ref={ref} id={id} data-testid="customSelect" className="custom-select">

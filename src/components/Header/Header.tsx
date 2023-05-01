@@ -1,5 +1,5 @@
-import { Countries } from '../Countries/Countries';
 import { Logo } from '../Logo/Logo';
+import { Navigation } from '../Navigation/Navigation';
 import './Header.scss';
 
 type Props = {};
@@ -7,10 +7,8 @@ type Props = {};
 export const Header = (props: Props) => {
   return (
     <header className="header">
-      <nav className="header__nav">
-        <Logo />
-        <Countries />
-      </nav>
+      <Logo />
+      <Navigation />
     </header>
   );
 };

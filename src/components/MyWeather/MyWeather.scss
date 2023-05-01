@@ -1,62 +1,59 @@
 .weather {
-  max-width: var(--page-width);
   margin: 0 auto;
-  padding: 1rem 2rem;
-  color: var(--white);
-  text-align: center;
-  text-shadow: 3px 3px 3px #000;
-  @media (max-width: 25rem) {
-    padding: 1rem 1rem;
-  }
+  padding: var(--app-padding);
+}
+.today-weather {
+  background-color: #fff;
+  padding: 1rem;
+  color: #000;
+  max-width: 850px;
+  margin: 0 auto;
+  border-radius: 5px;
   &__country {
-    color: var(--white);
-    font-size: 4rem;
+    font-size: 2rem;
+    font-weight: 700;
+  }
+  &__feels {
+    font-size: 1rem;
     font-weight: 500;
+  }
+  &__Temperature {
+    font-size: 1.8rem;
+    font-weight: 500;
+    &--unit {
+      display: inline-block;
+      font-size: 1.8rem;
+    }
+    &--sign {
+      display: inline-block;
+    }
   }
   &__container {
     display: flex;
-    justify-content: center;
     align-items: center;
+    margin-bottom: 1rem;
   }
-  &__img {
-    width: 100px;
-    height: auto;
-  }
-  &__Temperature {
-    font-size: 3rem;
-    font-weight: 600;
-    &--unit {
-      transform: translate(-10px, 0);
-      display: inline-block;
-      font-weight: 400;
-    }
-    &--sign {
-      transform: translate(-12px, -20px);
-      display: inline-block;
-      font-size: 2rem;
-    }
-  }
+
   &__detail {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 0.625rem;
-    flex-wrap: wrap;
-  }
-  &__item {
-    margin: 0.3rem 0.8rem;
-    display: flex;
-    align-items: center;
-    & > * {
-      padding: 0.3rem;
-      font-size: 1.3rem;
-      font-weight: 600;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+    gap: 1rem;
+    li {
+      display: flex;
+      align-items: center;
+      gap: 1ch;
+      position: relative;
+      padding: 0.5rem;
+      &::before {
+        content: '';
+        display: block;
+        height: 1px;
+        left: 0;
+        right: 0;
+        top: 0;
+        background-color: rgba(0, 0, 0, 0.1);
+        position: absolute;
+      }
     }
-  }
-  &__icon {
-    width: 18px;
-  }
-  &__number {
-    padding-left: 0.1rem;
   }
 }

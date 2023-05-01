@@ -1,0 +1,38 @@
+.main-hero {
+  min-height: 250px;
+  background-image: linear-gradient(
+      to top right,
+      rgba(0, 0, 0, 0.8) 0%,
+      rgba(0, 0, 0, 0.2) 40%,
+      rgba(0, 0, 0, 0) 100%
+    ),
+    url(../../assets/images/ui/spring3.jpg);
+  background-position: 0 50%;
+  background-size: cover;
+  display: grid;
+  align-items: center;
+  &__text {
+    font-family: inherit;
+    margin: 0;
+    padding: var(--app-padding);
+
+    color: var(--white);
+    font-size: 1.8rem;
+    font-weight: 700;
+    display: grid;
+    grid-template-columns: 1fr;
+    @media (max-width: 40rem) {
+      font-size: 1.4rem;
+    }
+  }
+  &__app-name {
+    font-size: 2.2rem;
+    @media (max-width: 40rem) {
+      font-size: 1.8rem;
+    }
+    &--focused {
+      color: var(--primary-color);
+      font-weight: 700;
+    }
+  }
+}

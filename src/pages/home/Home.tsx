@@ -1,4 +1,4 @@
-import { Header, MyWeather } from '../../components';
+import { Header, Hero, MyWeather, WeatherFilter } from '../../components';
 
 type Props = {};
 
@@ -6,7 +6,8 @@ export const Home = ({}: Props) => {
   return (
     <div>
       <Header />
-      {/* <Countries /> */}
+      <Hero />
+      <WeatherFilter />
       <MyWeather />
     </div>
   );

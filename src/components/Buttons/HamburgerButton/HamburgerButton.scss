@@ -1,0 +1,10 @@
+.hamburger-btn {
+  display: none;
+  @media (max-width: 42rem) {
+    display: block;
+  }
+  height: 38px;
+  &__icon {
+    height: 100%;
+  }
+}

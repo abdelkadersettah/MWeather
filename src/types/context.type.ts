@@ -3,11 +3,14 @@ export interface Country {
   code: string;
   capital: string;
 }
+export type UnitsDto = 'metric' | 'imperial';
 export interface citiesContextType {
   cities: CityDto[] | null;
   selectedCity: CityDto | null;
   updateCities: (citiesList: CityDto[]) => void;
   updateSelectedCity: (selectedCity: CityDto) => void;
+  units: UnitsDto;
+  updateUnits: (selectedUnit: UnitsDto) => void;
 }
 interface CordDto {
   lat: number;

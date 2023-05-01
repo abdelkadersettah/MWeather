@@ -9,11 +9,15 @@ body {
   --primary-color: #fb5741;
   --hover-color: #d43329;
   --primary-bg: #3e537c;
-
+  --secondary-color: #2f4858;
   // utilities
-
+  --app-padding: 0.8rem 2rem;
+  @media (max-width: 40rem) {
+    --app-padding: 0.8rem 1rem;
+  }
   --page-width: 65.625rem;
-  --transition--all: all linear 0.2s;
+  --transition-all: all linear 0.2s;
   --search-height: 2.375rem;
   --default-radius: 0.25rem;
+  --tablet-width: 38.37rem;
 }

@@ -1,5 +1,7 @@
-import { useEffect, useRef, useState } from 'react';
-import { CityDto } from '../../types/context.type';
+import { useContext, useEffect, useRef, useState } from 'react';
+import { MweatherContext } from '../../Context/MWeatherContext';
+import { useOnClickOutside } from '../../hooks/useClickOutside';
+import { CityDto, citiesContextType } from '../../types/context.type';
 import { SearchButton } from '../Buttons';
 import './SearchField.scss';
 import { Option } from './types';
@@ -11,7 +13,6 @@ type Props = {
   onSearch?: (key: string) => void;
   minSearchLength?: number;
   placeholder?: string;
-  searchResult: CityDto[] | null;
   onSelectItem?: (city: CityDto) => void;
 };
 const CountryFlag = (countryCode: string) => {
@@ -38,42 +39,27 @@ export const SearchField = ({
   minSearchLength = 2,
   onSearch,
   onItemClick,
-  searchResult,
   onSelectItem,
 }: Props) => {
   const [inputValue, setInputValue] = useState('');
-  const [selectedOption, setSelectedOption] = useState<Option>();
+  const [options, setOptions] = useState<Option>();
   const [openSearchResult, setOpenSearchResult] = useState(false);
   const ref = useRef<HTMLDivElement>(null);
+  useOnClickOutside(ref, () => setOpenSearchResult(false));
+  const { updateCities, cities, units } = useContext(
+    MweatherContext
+  ) as citiesContextType;
 
   useEffect(() => {
-    const checkIfClickedOutside = (e: MouseEvent) => {
-      if (
-        openSearchResult &&
-        ref.current &&
-        !ref.current.contains(e.target as Node)
-      ) {
-        setOpenSearchResult(false);
-      }
-      // @ts-ignore
-    };
-
-    document.addEventListener('mousedown', checkIfClickedOutside);
-
-    return () => {
-      // Cleanup the event listener
-      document.removeEventListener('mousedown', checkIfClickedOutside);
-    };
-  }, [openSearchResult]);
-  useEffect(() => {
-    if (searchResult && searchResult.length > 0) {
-      setOpenSearchResult(true);
+    if (cities && cities.length > 0) {
     }
-  }, [searchResult]);
+  }, [cities]);
 
   const handleSelectedCity = (city: CityDto) => {
     setOpenSearchResult(false);
     onSelectItem && onSelectItem(city);
+    updateCities([]);
+    setInputValue('');
   };
   return (
     <div ref={ref} id={id} data-testid="customSearch" className="custom-search">
@@ -86,15 +72,20 @@ export const SearchField = ({
             value={inputValue}
             id={inputId}
             data-testid="selectInput"
-            onFocus={(e) => console.log(e)}
             placeholder={placeholder ?? 'Search...'}
           />
         </div>
-        <SearchButton onClick={() => onSearch && onSearch(inputValue)} />
+        <SearchButton
+          disabled={inputValue.length === 0}
+          onClick={() => {
+            onSearch && onSearch(inputValue);
+            setOpenSearchResult(true);
+          }}
+        />
       </div>
       {openSearchResult && (
         <ul className="custom-search__option-list">
-          {searchResult?.map((r) => {
+          {cities?.map((r) => {
             return (
               <li
                 key={r.id}
@@ -104,7 +95,12 @@ export const SearchField = ({
                 <span>
                   {r.name}, {r.sys.country} {CountryFlag(r?.sys?.country ?? '')}
                 </span>
-                {r.main?.temp && <span>{Math.round(r.main?.temp)}°c</span>}
+                {r.main?.temp && (
+                  <span>
+                    {Math.round(r.main?.temp)}
+                    {units === 'metric' ? '°c' : '°f'}
+                  </span>
+                )}
                 {r.weather && <span>{WeatherIcon(r.weather[0].icon)}</span>}
               </li>
             );
