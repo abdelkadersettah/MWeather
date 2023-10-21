@@ -17,4 +17,4 @@ As mentioned before MWeather it is PWA, The user can install it and add it to ta
 
 ## Copyright
 
-Copyright (c) 2022 by [abdelkader settah](https://github.com/abdelkadersettah)
+Copyright (c) 2023 by [abdelkader settah](https://github.com/abdelkadersettah)
